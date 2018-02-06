@@ -1,0 +1,21 @@
+---
+- hosts: [F5-ALL]
+  gather_facts: true
+  #become: yes
+
+  tasks:
+    - name: "Fetch bigip.conf files"
+      fetch:
+        dest: "save/{{ansible_hostname}}_{{ansible_env.SSH_CONNECTION.split(' ')[2]}}/bigip_{{ lookup('pipe', 'date +%Y%m%d-%H%M%S') }}.conf"
+        src:  /config/bigip.conf
+        flat: yes
+
+    - name: "Fetch bigip_base.conf files"
+      fetch:
+        dest: "save/{{ansible_hostname}}_{{ansible_env.SSH_CONNECTION.split(' ')[2]}}/bigip_base_{{ lookup('pipe', 'date +%Y%m%d-%H%M%S') }}.conf"
+        src:  /config/bigip_base.conf
+        flat: yes
+
+#    - debug: msg="lalala:_{{ lookup('pipe', 'date +%Y%M%d-%H%M%S') }}.log"
+#    - debug: var={{vars.host_ip}}
+#    - debug: var="{{vars['host_name']}}"
