@@ -1,0 +1,23 @@
+---
+- name: Fetch qkview
+  hosts: [F5-ALL] 
+  gather_facts: true
+
+  vars_prompt:
+  - name: case_number
+    prompt: "F5 Support Case-number"
+    private: false
+
+  tasks:
+  - name: Fetch a qkview from the remote device
+    bigip_qkview:
+      asm_request_log: False
+      exclude:
+        - audit
+        - secure
+        - bash_history
+      dest: "/home/cyn/ansible/save/{{ansible_hostname}}_{{ansible_env.SSH_CONNECTION.split(' ')[2]}}/case_number_{{case_number}}_support_file_{{ansible_hostname}}_{{ lookup('pipe', 'date +%Y%m%d-%H%M%S') }}.qkview"
+      server: "{{ansible_env.SSH_CONNECTION.split(' ')[2]}}"
+      user: "{{ ansible_user }}"
+      password: "{{ ansible_ssh_pass }}"
+    delegate_to: localhost
