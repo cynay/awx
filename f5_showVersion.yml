@@ -1,5 +1,6 @@
 ---
 - name: Show versions
+  hosts: [F5-ALL]
   gather_facts: true
   
   tasks:
