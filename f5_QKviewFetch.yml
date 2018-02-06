@@ -3,11 +3,6 @@
   hosts: [F5-ALL] 
   gather_facts: true
 
-  vars_prompt:
-  - name: case_number
-    prompt: "F5 Support Case-number"
-    private: false
-
   tasks:
   - name: Fetch a qkview from the remote device
     bigip_qkview:
