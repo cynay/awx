@@ -1,0 +1,13 @@
+---
+- name: Show versions
+  gather_facts: true
+  
+  tasks:
+  - name: run show version on remote devices
+    bigip_command:
+      commands: show sys version
+      server: "{{ansible_env.SSH_CONNECTION.split(' ')[2]}}"
+      user: "{{ ansible_user }}"
+      password: "{{ ansible_ssh_pass }}"
+      validate_certs: no
+    delegate_to: localhost
