@@ -1,6 +1,6 @@
 ---
 - name: Show versions
-  hosts: [F5-ALL]
+  hosts: "{{ awx_hosts }}"
   gather_facts: true
   
   tasks:
