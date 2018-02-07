@@ -11,5 +11,8 @@
       user: "{{ ansible_user }}"
       password: "{{ ansible_ssh_pass }}"
       validate_certs: no
+    register: result
     delegate_to: localhost
     
+  - debug:
+    var: result.stdout_lines
