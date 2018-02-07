@@ -12,3 +12,7 @@
       password: "{{ ansible_ssh_pass }}"
       validate_certs: no
     delegate_to: localhost
+    register: output
+   
+  - debug:
+    var: output
