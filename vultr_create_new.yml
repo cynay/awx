@@ -1,12 +1,17 @@
 ---
 - name: Create new server
-  local_action:
-    module: vr_server
-    name: "{{ vr_server_name }}"
-    hostname: "{{ vr_hostname }}"
-    ssh_keys: "{{ vr_sshkeys }}"
-    os: CentOS 7 x64
-    plan: 512 MB RAM,20 GB SSD,0.50 TB BW
-    region: New York
-    state: present
-   
+  hosts: 127.0.0.1
+  connection: local 
+  gather_facts: false
+
+  tasks:
+    - name: Provision Vultr server
+      local_action:
+        module: vr_server
+        name: "{{ vr_server_name }}"
+        hostname: "{{ vr_hostname }}"
+        ssh_keys: "{{ vr_sshkeys }}"
+        os: CentOS 7 x64
+        plan: 512 MB RAM,20 GB SSD,0.50 TB BW
+        region: New York
+        state: present
