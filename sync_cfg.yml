@@ -5,6 +5,7 @@
   
   tasks:
   - name: copy dir
+    sudo: true
     copy:
       src: /var/lib/awx/projects/_6__f5_testing/save
       dest: /data/F5
