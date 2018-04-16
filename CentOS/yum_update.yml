@@ -1,0 +1,12 @@
+---
+- name: Run yum update
+  hosts: "{{ awx_hosts }}"
+  gather_facts: true
+  
+  tasks:
+  - name: run update on remote devices
+    yum:
+      name: '*'
+      state: latest
+      exclude: placeholder*
+
