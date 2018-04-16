@@ -20,8 +20,9 @@
 
     - name: install epel-release
       yum: 
-        state: installed 
-        pkg: epel-release
+        name: epel-release
+        gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+        state: present
 
     - name: run update 
       yum:
