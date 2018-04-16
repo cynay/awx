@@ -32,7 +32,7 @@
 
     - name: install required packages
       yum: 
-        name: {{ required_packages }}
+        name: "{{ required_packages }}"
         state: present
 
     - name: disallow login with empty pw
