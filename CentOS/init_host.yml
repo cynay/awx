@@ -2,7 +2,6 @@
 - name: Init host
   hosts: all
   gather_facts: true
-  become: true
 
   vars:
     deploy_user_name: cyn
@@ -22,6 +21,7 @@
 
     - name: test expect
       shell: "yum install epel-release -y "
+      become: yes
       
 
     - name: install epel-release
