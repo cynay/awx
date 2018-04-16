@@ -22,7 +22,7 @@
 
     - name: install epel GPG Key
       rpm_key:
-        key: /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+        key: http://mirror.switch.ch/ftp/mirror/epel//RPM-GPG-KEY-EPEL-7
         state: present
 
     - name: install epel-release
