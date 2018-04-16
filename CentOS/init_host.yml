@@ -1,6 +1,6 @@
 ---
 - name: Init host
-  hosts: "{{ awx_hosts }}"
+  hosts: all
   gather_facts: true
   
 
