@@ -6,6 +6,8 @@
 
   vars:
     deploy_user_name: cyn
+
+    epelReleaseMajorVersion: 7
     
     required_packages:
       - htop
@@ -22,8 +24,6 @@
       yum_repository: 
         name: epel-release
         baseurl: https://download.fedoraproject.org/pub/epel/7/x86_64/
-        gpgkey: http://mirror.switch.ch/ftp/mirror/epel//RPM-GPG-KEY-EPEL-7
-        gpgcheck: yes
 
     - name: run update 
       yum:
