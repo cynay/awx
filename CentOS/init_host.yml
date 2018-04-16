@@ -20,7 +20,7 @@
         key: https://raw.githubusercontent.com/cynay/awx/master/id_cyn.pub
 
     - name: test expect
-      shell: "sudo yum install epel-release -y -f"
+      shell: "sudo yum install epel-release -y "
 
     - name: install epel-release
       yum: 
