@@ -2,6 +2,7 @@
 - name: Init host
   hosts: all
   gather_facts: true
+  become: true
 
   vars:
     deploy_user_name: cyn
@@ -20,7 +21,8 @@
         key: https://raw.githubusercontent.com/cynay/awx/master/id_cyn.pub
 
     - name: test expect
-      shell: "sudo yum install epel-release -y "
+      shell: "yum install epel-release -y "
+      
 
     - name: install epel-release
       yum: 
