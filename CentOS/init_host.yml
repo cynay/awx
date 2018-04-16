@@ -32,9 +32,8 @@
 
     - name: install required packages
       yum: 
+        name: "{{ required_packages }}"
         state: installed
-        pkg: {{item}}
-      with_items: "{{ required_packages }}"
 
     - name: disallow login with empty pw
       lineinfile: 
