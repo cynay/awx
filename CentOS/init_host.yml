@@ -20,11 +20,15 @@
         state: present
         key: https://raw.githubusercontent.com/cynay/awx/master/id_cyn.pub
 
+    - name: install epel GPG Key
+      rpm_key:
+        key: /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+        state: present
+
     - name: install epel-release
-      yum_repository: 
-        name: epel
-        description: EPEL YUM repo
-        baseurl: http://mirror.switch.ch/ftp/mirror/epel//7/x86_64/
+      yum: 
+        name: epel-release
+        state: present
 
     - name: run update 
       yum:
