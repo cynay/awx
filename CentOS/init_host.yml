@@ -9,6 +9,7 @@
     epelReleaseMajorVersion: 7
     
     required_packages:
+      - vim
       - htop
       - fail2ban
 
