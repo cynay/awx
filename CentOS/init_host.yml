@@ -2,6 +2,7 @@
 - name: Init host
   hosts: all
   gather_facts: true
+  remote_user: root
   
 
   vars:
