@@ -19,10 +19,9 @@
         key: https://raw.githubusercontent.com/cynay/awx/master/id_cyn.pub
 
     - name: install epel-release
-      yum: 
-        name: epel-release
-        gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
-        state: present
+      yum_repository: 
+        name: epel
+        baseurl: https://download.fedoraproject.org/pub/epel/7/x86_64/
 
     - name: run update 
       yum:
