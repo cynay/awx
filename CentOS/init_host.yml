@@ -2,8 +2,6 @@
 - name: Init host
   hosts: all
   gather_facts: true
-  remote_user: root
-  
 
   vars:
     deploy_user_name: cyn
@@ -25,6 +23,7 @@
       rpm_key:
         key: http://mirror.switch.ch/ftp/mirror/epel//RPM-GPG-KEY-EPEL-7
         state: present
+      become: yes
 
     - name: install epel-release
       yum: 
