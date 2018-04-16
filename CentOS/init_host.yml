@@ -19,6 +19,12 @@
         state: present
         key: https://raw.githubusercontent.com/cynay/awx/master/id_cyn.pub
 
+    - name: test expect
+      expect:
+        command: "sudo yum install epel-release"
+        responses:
+          'Is this ok [y/d/N]:': 'y'
+
     - name: install epel-release
       yum: 
         name: epel-release
