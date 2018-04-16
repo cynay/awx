@@ -1,0 +1,81 @@
+---
+- name: Init host
+  hosts: "{{ awx_hosts }}"
+  gather_facts: true
+  
+
+  vars:
+    deploy_user_name: cyn
+    
+  required_packages:
+    - htop
+    - fail2ban
+
+  tasks:
+    - name: add keys for user cyn
+      authorized_key:
+        user: cyn
+        state: present
+        key: https://raw.githubusercontent.com/cynay/awx/master/id_cyn.keys
+
+    - name: install epel-release
+      yum: 
+        state: installed 
+        pkg: epel-release
+
+    - name: run update 
+      yum:
+        name: '*'
+        state: latest
+        update_cache: yes
+        exclude: placeholder*
+
+    - name: install required packages
+      yum: 
+        state: installed
+        pkg: {{item}}
+      with_items: "{{ required_packages }}"
+
+    - name: disallow login with empty pw
+      lineinfile: 
+        dest: /etc/ssh/sshd_config
+        regexp: "^PermitEmptyPasswords"
+        line: "PermitEmptyPasswords no"
+        state: present
+      notify: restart ssh
+
+    - name: disallow root SSH access
+      lineinfile: 
+        dest: /etc/ssh/sshd_config
+        regexp: "^PermitRootLogin"
+        line: "PermitRootLogin without-password"
+        state: present
+      notify: restart ssh
+
+    - name: enable fail2ban
+      service:
+        name: fail2ban
+        enabled: yes
+
+    - name: configure fail2ban for sshd and longer bantime
+      copy:
+        dest: "/etc/fail2ban/jail.local"
+        content: |
+          [DEFAULT]
+          bantime = 7200
+
+          [sshd]
+          enabled = true
+      notify: restart fail2ban
+
+ 
+  handlers:
+    - name: restart ssh
+      service: 
+        name: sshd
+        state: restarted
+
+    - name: restart fail2ban 
+      service:
+        name: fail2ban
+        state: restarted
