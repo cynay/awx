@@ -7,9 +7,9 @@
   vars:
     deploy_user_name: cyn
     
-  required_packages:
-    - htop
-    - fail2ban
+    required_packages:
+      - htop
+      - fail2ban
 
   tasks:
     - name: add keys for user cyn
