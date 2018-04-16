@@ -23,7 +23,7 @@
     - name: install epel-release
       yum_repository: 
         name: epel-release
-        baseurl: https://download.fedoraproject.org/pub/epel/7/x86_64/
+        baseurl: http://mirror.switch.ch/ftp/mirror/epel//7/x86_64/
 
     - name: run update 
       yum:
