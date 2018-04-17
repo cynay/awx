@@ -12,6 +12,7 @@
       - vim
       - htop
       - fail2ban
+      - pexpect
 
   tasks:
     - name: add keys for user cyn
