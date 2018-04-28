@@ -75,7 +75,7 @@
 
     - name: copy runner script
       copy:
-        dest: "home/cyn/xmr-run.sh"
+        dest: "/home/cyn/xmr-run.sh"
         content: |
           #!/bin/bash
           screen
