@@ -23,6 +23,7 @@
       yum: 
         name: epel-release
         state: present
+      become: yes
 
     - name: install centos-release-scl
       yum: 
@@ -36,11 +37,13 @@
         state: latest
         update_cache: yes
         exclude: placeholder*
+      become: yes
 
     - name: install required packages
       yum: 
         name: "{{ required_packages }}"
         state: present
+      become: yes
 
     - name: Create install script
       copy:
