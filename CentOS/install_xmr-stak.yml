@@ -10,7 +10,8 @@
     
     required_packages: 
       - cmake3
-      - devtoolset-4-gcc*
+      - devtoolset-7-gcc
+      - devtoolset-7-gcc-c++
       - hwloc-devel
       - libmicrohttpd-devel
       - openssl-devel
@@ -54,7 +55,7 @@
         dest: "/home/cyn/xmr-install.sh"
         content: |
           #!/bin/bash
-          scl enable deevtoolset-4 bash
+          scl enable deevtoolset-7 bash
           git clone https://github.com/fireice-uk/xmr-stak.git
           mkdir xmr-stak/build
           cd xmr-stak/build
