@@ -59,7 +59,7 @@
           git clone https://github.com/fireice-uk/xmr-stak.git
           mkdir -p xmr-stak/build
           cd xmr-stak/build
-          export CC=/usr/bin/gcc
+          export CC=/opt/rh/devtoolset-7/root/usr/bin/gcc
           export CXX=/opt/rh/devtoolset-7/root/usr/bin/g++
           cmake3 .. -DCUDA_ENABLE=OFF -DOpenCL_ENABLE=OFF
         mode: 0774
