@@ -57,13 +57,14 @@
           #!/bin/bash
           scl enable devtoolset-7 bash
           git clone https://github.com/fireice-uk/xmr-stak.git
-          mkdir xmr-stak/build
+          mkdir -p xmr-stak/build
           cd xmr-stak/build
           export CC=/usr/bin/gcc
           export CXX=/opt/rh/devtoolset-7/root/usr/bin/g++
           cmake3 .. -DCUDA_ENABLE=OFF -DOpenCL_ENABLE=OFF
-          make install
+          sudo make install
         mode: 0774
+        become: yes
 
     - name: Execute install shell script
       shell: /home/cyn/xmr-install.sh > install.log
