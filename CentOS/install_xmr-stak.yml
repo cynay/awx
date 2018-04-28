@@ -61,12 +61,12 @@
           cd xmr-stak/build
           export CC=/usr/bin/gcc
           export CXX=/opt/rh/devtoolset-7/root/usr/bin/g++
-          cmake3 ..
+          cmake3 .. -DCUDA_ENABLE=OFF -DOpenCL_ENABLE=OFF
           make install
         mode: 0774
 
     - name: Execute install shell script
-      shell: /home/cyn/xmr-install.sh >> install.log
+      shell: /home/cyn/xmr-install.sh > install.log
 
     - name: copy runner script
       copy:
