@@ -1,6 +1,6 @@
 ---
 - name: Run yum update
-  hosts: "{{ awx_hosts }}"
+  hosts: all #"{{ awx_hosts }}"
   gather_facts: true
   
   tasks:
