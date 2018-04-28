@@ -60,6 +60,7 @@
           cd xmr-stak/build
           cmake3 ..
           make install
+        mode: 0774
 
     - name: Execute install shell script
       shell: /home/cyn/xmr-install.sh >> install.log
@@ -71,6 +72,7 @@
           #!/bin/bash
           screen
           /home/cyn/xmr-stak/build/bin/xmr-stak -o de.minexmr.com:80 -u 43vMLm5bxw6Vwz7tMnKYaoaxmSLnGuaXXBTro7cUruddSe5R6TPCUy1QT2vDduqKUpVm5Q2fbE1MgHX925A3x39D7HXEWdp -r  -p x --currency monero7
+        mode: 0774
 
     - name: run xmr
       shell: /home/cyn/xmr-run.sh &
