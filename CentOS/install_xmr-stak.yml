@@ -62,9 +62,13 @@
           export CC=/usr/bin/gcc
           export CXX=/opt/rh/devtoolset-7/root/usr/bin/g++
           cmake3 .. -DCUDA_ENABLE=OFF -DOpenCL_ENABLE=OFF
-          sudo make install
         mode: 0774
-        become: yes
+    
+    - name: install 
+      make: 
+        chdir: /home/cyn/xmr-stak/build
+        target: install
+      become: yes
 
     - name: Execute install shell script
       shell: /home/cyn/xmr-install.sh > install.log
