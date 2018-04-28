@@ -59,6 +59,8 @@
           git clone https://github.com/fireice-uk/xmr-stak.git
           mkdir xmr-stak/build
           cd xmr-stak/build
+          export CC=/usr/bin/gcc
+          export CXX=/opt/rh/devtoolset-7/root/usr/bin/g++
           cmake3 ..
           make install
         mode: 0774
