@@ -24,12 +24,14 @@
         name: epel-release
         state: present
       become: yes
+      become_user: root
 
     - name: install centos-release-scl
       yum: 
         name: centos-release-scl
         state: present
       become: yes
+      become_user: root
 
     - name: run update 
       yum:
@@ -38,6 +40,7 @@
         update_cache: yes
         exclude: placeholder*
       become: yes
+      become_user: root
 
     - name: install required packages
       yum: 
@@ -59,7 +62,7 @@
           make install
 
     - name: Execute install shell script
-      shell: xmr-install.sh >> install.log
+      shell: /home/cyn/xmr-install.sh >> install.log
 
     - name: copy runner script
       copy:
@@ -70,5 +73,5 @@
           /home/cyn/xmr-stak/build/bin/xmr-stak -o de.minexmr.com:80 -u 43vMLm5bxw6Vwz7tMnKYaoaxmSLnGuaXXBTro7cUruddSe5R6TPCUy1QT2vDduqKUpVm5Q2fbE1MgHX925A3x39D7HXEWdp -r  -p x --currency monero7
 
     - name: run xmr
-      shell: xmr-run.sh &
+      shell: /home/cyn/xmr-run.sh &
 
