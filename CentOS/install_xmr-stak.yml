@@ -44,6 +44,7 @@
         name: "{{ required_packages }}"
         state: present
       become: yes
+      become_user: root
 
     - name: Create install script
       copy:
