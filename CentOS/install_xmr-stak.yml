@@ -55,7 +55,7 @@
         dest: "/home/cyn/xmr-install.sh"
         content: |
           #!/bin/bash
-          scl enable deevtoolset-7 bash
+          scl enable devtoolset-7 bash
           git clone https://github.com/fireice-uk/xmr-stak.git
           mkdir xmr-stak/build
           cd xmr-stak/build
