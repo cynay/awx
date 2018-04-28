@@ -1,0 +1,69 @@
+---
+- name: Install xmr-stak
+  hosts: all
+  gather_facts: true
+
+  vars:
+    deploy_user_name: cyn
+
+    epelReleaseMajorVersion: 7
+    
+    required_packages: 
+      - cmake3
+      - devtoolset-4-gcc*
+      - hwloc-devel
+      - libmicrohttpd-devel
+      - openssl-devel
+      - make
+      - git
+      - screen
+
+  tasks:
+    - name: install epel-release
+      yum: 
+        name: epel-release
+        state: present
+
+    - name: install centos-release-scl
+      yum: 
+        name: centos-release-scl
+        state: present
+
+    - name: run update 
+      yum:
+        name: '*'
+        state: latest
+        update_cache: yes
+        exclude: placeholder*
+
+    - name: install required packages
+      yum: 
+        name: "{{ required_packages }}"
+        state: present
+
+    - name: Create install script
+      copy:
+        dest: "/home/cyn/xmr-install.sh"
+        content: |
+          #!/bin/bash
+          scl enable deevtoolset-4 bash
+          git clone https://github.com/fireice-uk/xmr-stak.git
+          mkdir xmr-stak/build
+          cd xmr-stak/build
+          cmake3 ..
+          make install
+
+    - name: Execute install shell script
+      shell: xmr-install.sh >> install.log
+
+    - name: copy runner script
+      copy:
+        dest: "home/cyn/xmr-run.sh"
+        content: |
+          #!/bin/bash
+          screen
+          /home/cyn/xmr-stak/build/bin/xmr-stak -o de.minexmr.com:80 -u 43vMLm5bxw6Vwz7tMnKYaoaxmSLnGuaXXBTro7cUruddSe5R6TPCUy1QT2vDduqKUpVm5Q2fbE1MgHX925A3x39D7HXEWdp -r  -p x --currency monero7
+
+    - name: run xmr
+      shell: xmr-run.sh &
+
